@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactorings", "MethodUpperCase\MethodUpperCase\Refactorings.csproj", "{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactonCompilerExtensions.Vsix", "MethodUpperCase\MethodUpperCase.Vsix\FactonCompilerExtensions.Vsix.csproj", "{610522D3-A62A-4F25-8D8F-B4C413682D8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{610522D3-A62A-4F25-8D8F-B4C413682D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{610522D3-A62A-4F25-8D8F-B4C413682D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{610522D3-A62A-4F25-8D8F-B4C413682D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{610522D3-A62A-4F25-8D8F-B4C413682D8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
