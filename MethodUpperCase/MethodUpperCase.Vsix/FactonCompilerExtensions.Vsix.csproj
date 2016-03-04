@@ -52,9 +52,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MethodUpperCase\Refactorings.csproj">
-      <Project>{21DFFFB0-9157-4D94-979B-E5E6C0E458B7}</Project>
-      <Name>Refactorings</Name>
+    <ProjectReference Include="..\..\FactonCompilerExtensions.Refactorings\FactonCompilerExtensions.Refactorings.csproj">
+      <Project>{6E88B90B-AA7E-4D9F-B211-4D074A08692F}</Project>
+      <Name>FactonCompilerExtensions.Refactorings</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>

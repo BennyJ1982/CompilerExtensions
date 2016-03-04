@@ -15,7 +15,7 @@
 		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
 	</Dependencies>
 	<Assets>
-		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Refactorings" Path="|Refactorings|" />
-		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Refactorings" Path="|Refactorings|" />
+		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="FactonCompilerExtensions.Refactorings" Path="|FactonCompilerExtensions.Refactorings|" />
+		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="FactonCompilerExtensions.Refactorings" Path="|FactonCompilerExtensions.Refactorings|" />
 	</Assets>
 </PackageManifest>

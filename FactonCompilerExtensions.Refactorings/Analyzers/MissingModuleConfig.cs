@@ -2,11 +2,12 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace Refactorings.Analyzers
+namespace FactonCompilerExtensions.Refactorings.Analyzers
 {
 	using System;
 	using System.Reflection;
 	using System.Linq;
+	using EnvDTE;
 	using Microsoft.CodeAnalysis.CSharp;
 	using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -31,9 +32,15 @@ namespace Refactorings.Analyzers
 		}
 
 		private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
-		{
+		{			
 			INamedTypeSymbol factonModule;
 			if (!TryGetFactonModule(context, out factonModule))
+			{
+				return;
+			}
+
+			var moduleFilePath = context.Node.SyntaxTree.FilePath;
+			if (string.IsNullOrEmpty(moduleFilePath))
 			{
 				return;
 			}
@@ -44,8 +51,14 @@ namespace Refactorings.Analyzers
 				return;
 			}
 
-			var moduleFilePath = context.Node.SyntaxTree.FilePath;
-			if (string.IsNullOrEmpty(moduleFilePath))
+			IServiceProvider serviceProvider;
+			if (!TryGetServiceProvider(workspace, out serviceProvider))
+			{
+				return;
+			}
+
+			var dte = serviceProvider.GetService(typeof(DTE)) as DTE;
+			if (dte == null)
 			{
 				return;
 			}
@@ -57,13 +70,15 @@ namespace Refactorings.Analyzers
 			}
 
 			var project = workspace.CurrentSolution.GetProject(documentIds.First().ProjectId);
-			var configFiles = project.Documents.Where(d => d.FilePath.EndsWith(".config"));
-			foreach (var configFile in configFiles)
+			var dteProject = dte.Solution.Projects.OfType<Project>().FirstOrDefault(p => p.Name == project.Name);
+			if (dteProject == null)
 			{
-				
+				return;
 			}
 
-			//workspace.Services.GetService<>()
+			//dteProject.ProjectItems.AddFolder("New Folder" + dteProject.ProjectItems.Count);
+
+			// TODO check if config file already exists
 
 			context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), factonModule.ContainingNamespace, factonModule.Name));
 		}
@@ -120,6 +135,22 @@ namespace Refactorings.Analyzers
 			}
 
 			workspace = (Workspace)property.GetValue(context.Options);
+			return true;
+		}
+
+		/// <summary>
+		/// Hacky way of getting the visual studio service provider until Microsoft has made their internal class public
+		/// </summary>
+		private static bool TryGetServiceProvider(Workspace workspace, out IServiceProvider serviceProvider)
+		{
+			var property = workspace.GetType().GetRuntimeFields().FirstOrDefault(f => f.Name == "ServiceProvider");
+			if (property == null)
+			{
+				serviceProvider = null;
+				return false;
+			}
+
+			serviceProvider = (IServiceProvider)property.GetValue(workspace);
 			return true;
 		}
 	}
